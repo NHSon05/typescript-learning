@@ -1,12 +1,21 @@
 // import { useState } from "react";
+import React from "react";
 
-const Count = ({
-    count, 
-    setCount
-} : {
-    count: number; 
-    setCount: React.Dispatch<React.SetStateAction<number>>; 
-}) => {
+// type Props = {
+//     count: number; 
+//     setCount: React.Dispatch<React.SetStateAction<number>>
+// }
+
+interface IProps {
+    count: number,
+    setCount: React.Dispatch<React.SetStateAction<number>>
+    total: (a: number, b:number) => number;
+}
+
+const Count = ({count, setCount, total} : IProps) => {
+
+    // console.log(total(23,46))
+
     return ( 
         <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
