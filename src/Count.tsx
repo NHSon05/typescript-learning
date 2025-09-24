@@ -12,7 +12,7 @@ interface IProps {
     total: (a: number, b:number) => number;
 }
 
-const Count = ({count, setCount, total} : IProps) => {
+const Count = ({count, setCount} : IProps) => {
 
     // console.log(total(23,46))
 

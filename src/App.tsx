@@ -26,28 +26,57 @@ interface IRelationship {
   childName: string
 }
 
-interface IEmployee extends IPeople, IRelationship {
-  jobTitle: string,
-  degree: string,
+
+
+enum Degree {
+  ASSOCIATES = 'ASSOCIATES', 
+  BACHERLORS = 'BACHERLORS',
+  MASTERS = 'MASTERS',
+  DOCTORATE = 'DOCTORATE',
+  PROFESSIONAL = 'PROFESSIONAL'
 }
 
+interface IEmployee extends IPeople, IRelationship {
+  jobTitle: string;
+  degree: Degree;
+  level?: string | number | Degree;
+}
 
+type ApiResponse<DataType> = {
+  data: DataType
+  status: 'success' | 'failure'  
+}
+
+// type bookResponse = {
+//   data: { id: number; bookName : string};
+//   status: 'success' | 'failure'
+// }
 
 function App() {
 
   const [count, setCount] = useState<number>(0)
   const [people, setPeople] = useState<IPeople>()
+  const userResponse: ApiResponse<{id: number; name: string }> = {
+    data: {id: 1, name: 'John'},
+    status: 'success',
+  }
+
+  const bookResponse: ApiResponse<{id: number; name: string }> = {
+    data: { id: 1, name : 'Doraemon'},
+    status: 'success',
+  }
 
   const employee: IEmployee = {
     name: 'Employee',
     age: 48,
     jobTitle: 'Software Engineer',
-    degree: 'Master',
+    degree: Degree.MASTERS,
     wifeName: 'My',
-    childName: 'Son'
+    childName: 'Son',
+    level: 3
   }
 
-  console.log(employee, people)
+  console.log(employee, people, userResponse, bookResponse)
 
   function total(number1: number, number2:number) : number{
     return number1 + number2
