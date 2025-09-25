@@ -28,13 +28,15 @@ interface IRelationship {
 
 
 
-enum Degree {
-  ASSOCIATES = 'ASSOCIATES', 
-  BACHERLORS = 'BACHERLORS',
-  MASTERS = 'MASTERS',
-  DOCTORATE = 'DOCTORATE',
-  PROFESSIONAL = 'PROFESSIONAL'
-}
+const Degree = {
+  ASSOCIATES: 'ASSOCIATES',
+  BACHERLORS: 'BACHERLORS',
+  MASTERS: 'MASTERS',
+  DOCTORATE: 'DOCTORATE',
+  PROFESSIONAL: 'PROFESSIONAL'
+} as const;
+
+type Degree = typeof Degree[keyof typeof Degree];
 
 interface IEmployee extends IPeople, IRelationship {
   jobTitle: string;
@@ -76,6 +78,46 @@ function App() {
     level: 3
   }
 
+  class Employee{
+    public empName: string;
+    protected empCode: number;
+
+    constructor(name: string, code: number){
+      this.empName = name;
+      this.empCode = code;
+    }
+  }
+  class SalesEmployee extends Employee{
+    private department: string;
+
+    constructor(name: string, code: number, department:string){
+      super(name,code); //gọi constructor của class cha
+      this.department = department;
+    }
+  }
+  const emp = new SalesEmployee("John Smith",223, "Sales");
+  console.log(emp);
+  console.log(emp.empName);
+
+  class Person {
+    private ssn: string ;
+    private firstName: string;
+    private lastName: string;
+
+    constructor(ssn: string, firstName: string, lastName: string) {
+      this.ssn = ssn;
+      this.firstName = firstName;
+      this.lastName = lastName;
+    }
+    getFullName(): string{
+      return `${this.firstName} ${this.lastName}`;
+    }
+  }
+
+  const person = new Person('122', 'Nguyen','Son');
+  // console.log(person.ssn);
+
+  console.log(person.getFullName());
   console.log(employee, people, userResponse, bookResponse)
 
   function total(number1: number, number2:number) : number{
