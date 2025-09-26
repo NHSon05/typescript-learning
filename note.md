@@ -42,4 +42,9 @@ q.a;                       // ❌ lỗi cũng xảy ra vì `Object` không biế
             person = [25, "Alice"];   // ❌ Sai thứ tự
             person = ["Alice"];       // ❌ Sai số lượng phần tử
 
+------------------------------------`3.AccessModifier`-------------------------------------
+-   public:     ai cũng có thể truy cập
+-   private:    không cho phép kế thừa
+
+
 
