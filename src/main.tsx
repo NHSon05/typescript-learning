@@ -5,7 +5,8 @@ import './index.css'
 // import GetSet from './GettersSetters/getterSetter.tsx';
 // import Inheritance from './Inheritance/Inheritance.tsx';
 // import StaticMethod from './StaticMethodsAndProperties/StaticAndProperties.tsx';
-import AbtractClasses from './AbtractClasses/AbtractClasses.tsx';
+// import AbtractClasses from './AbtractClasses/AbtractClasses.tsx';
+import Interfaces from './Interfaces/Interfaces.tsx';
 
 
 createRoot(document.getElementById('root')!).render(
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
     {/* <GetSet/> */}
     {/* <Inheritance/> */}
     {/* <StaticMethod/> */}
-    <AbtractClasses/>
+    {/* <AbtractClasses/> */}
+    <Interfaces/>
   </StrictMode>,
 )
