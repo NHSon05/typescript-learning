@@ -1,5 +1,8 @@
 class Person3{
-    constructor(private firstName:string, private lastName: string){
+    firstName: string;
+    lastName: string;
+
+    constructor(firstName:string, lastName: string){
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -19,10 +22,20 @@ class Employee1 extends Person3{
         lastName: string,
         jobTitle: string
     ){
-    super(firstName, lastName);
+
+    // call the constructor of the person class
+    super(firstName, lastName); // dùng để gọi là thằng cha
     this.jobTitle = jobTitle;
     }
+    // overwrite
+    describe(): string{
+        return `${super.describe()} ${this.jobTitle}`;
+    }
 }
+
+let employee = new Employee1('Son', ' Nguyen', 'Web');
+console.log(employee.getFullName());
+console.log(employee.describe());   
 
 function Inheritance() {
     return (  
