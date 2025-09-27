@@ -4,7 +4,8 @@ import './index.css'
 // import App from './App.tsx'
 // import GetSet from './GettersSetters/getterSetter.tsx';
 // import Inheritance from './Inheritance/Inheritance.tsx';
-import StaticMethod from './StaticMethodsAndProperties/StaticAndProperties.tsx';
+// import StaticMethod from './StaticMethodsAndProperties/StaticAndProperties.tsx';
+import AbtractClasses from './AbtractClasses/AbtractClasses.tsx';
 
 
 createRoot(document.getElementById('root')!).render(
@@ -12,6 +13,7 @@ createRoot(document.getElementById('root')!).render(
     {/* <App /> */}
     {/* <GetSet/> */}
     {/* <Inheritance/> */}
-    <StaticMethod/>
+    {/* <StaticMethod/> */}
+    <AbtractClasses/>
   </StrictMode>,
 )
