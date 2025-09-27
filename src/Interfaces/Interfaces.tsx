@@ -15,6 +15,20 @@ function getFullName(person: IPerson) {
     return `${person.firstName} ${person.lastName}`;
 }
 
+interface User {
+    id: number;
+}
+
+interface User{
+    name: string;
+}
+
+const user: User = {
+    id: 1,
+    name: 'son'
+}
+console.log(user);
+
 const person40 = {
     firstName: 'Son',
     lastName: 'Hehe Boy',
