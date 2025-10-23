@@ -10,7 +10,7 @@ class Person3{
         return `${this.firstName} ${this.lastName}`;
     }
     describe():string{
-        return `This is ${this.firstName} ${this.lastName}`
+        return `This is ${this.firstName} ${this.lastName}s`
     }
 
 }
@@ -33,7 +33,7 @@ class Employee1 extends Person3{
     }
 }
 
-let employee = new Employee1('Son', ' Nguyen', 'Web');
+const employee = new Employee1('Son', ' Nguyen', 'Web');
 console.log(employee.getFullName());
 console.log(employee.describe());   
 
