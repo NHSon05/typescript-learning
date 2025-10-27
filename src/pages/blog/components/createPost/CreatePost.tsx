@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import type { Post } from "../../../../types/blog.type"
 import { useDispatch, useSelector } from "react-redux"
-import { addPost, cancelEditPost, finishEditPost } from "../../blog.reducer"
+import { addPost, cancelEditPost, finishEditPost } from "../../blog.slice"
 import type { RootState } from "../../../../store"
 
 const initialState: Post = {
@@ -42,7 +42,9 @@ export default function CreatePost() {
       <form onSubmit={handleSubmit} onReset={handleCancelEdit}>
         <div className="mb-6">
           <label  htmlFor="title" 
-                  className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
+                  className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
+                  onClick={() => dispatch({type: 'blog/click'})}
+                  >Title</label>
           <input type="text" 
                 id="title" 
                 className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-blue-500" 

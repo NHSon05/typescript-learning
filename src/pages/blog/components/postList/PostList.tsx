@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import PostItem from "../postItem";
 import type { RootState } from "../../../../store";
-import { deletePost, startEditPost } from "../../blog.reducer";
+import { deletePost, startEditPost } from "../../blog.slice";
 
 export default function PostList() {
 
@@ -13,8 +13,6 @@ export default function PostList() {
   const handleUpdate = (postId: string) => {
     dispatch(startEditPost(postId))
   }
-
-  console.log(postList);
 
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12">
