@@ -31,6 +31,8 @@ const blogSlice = createSlice({
   name:'blog',
   initialState,
   reducers: {
+    
+
     deletePost: (state, action: PayloadAction<string>) => {
       const postId = action.payload
       const foundPostIndex = state.postList.findIndex(post  => post.id === postId)

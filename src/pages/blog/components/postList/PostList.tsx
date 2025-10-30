@@ -2,11 +2,27 @@ import { useDispatch, useSelector } from "react-redux";
 import PostItem from "../postItem";
 import type { RootState } from "../../../../store";
 import { deletePost, startEditPost } from "../../blog.slice";
+import { useEffect } from "react";
+import http from "../../../../utils/http";
+
+
+// Call API in useEffect()
+// If call successfully, dispatch action type: "blog/getPostListSuccess"
+// else, dispatch "blog/getPostListFailed"
+
+// dispatch action type: "blog/getPostList": not permitted to use
 
 export default function PostList() {
 
   const postList = useSelector((state: RootState) => state.blog.postList)
   const dispatch = useDispatch()
+  
+  useEffect(()=> {
+    http.get('posts').then((res) => {
+      console.log(res)
+    }) 
+  },[])
+
   const handleDelete  = (postId: string) => {
     dispatch(deletePost(postId))
   }
