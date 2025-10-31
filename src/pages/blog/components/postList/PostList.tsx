@@ -18,17 +18,37 @@ export default function PostList() {
   const dispatch = useDispatch()
   
   useEffect(()=> {
-    http.get('posts').then((res) => {
-      console.log(res)
-    }) 
-  },[])
+    const controller = new AbortController();
+    http
+      .get('posts',{
+        signal: controller.signal
+      }).then((res) => {
+        console.log(res)
+        const postsListResult = res.data
+        dispatch({
+          type: 'blog/getPostListSuccess',
+          payload: postsListResult
+        })
+      }).catch(error => {
+        if (!(error.code === "ERR_CANCELED")){
+          dispatch({
+            type: 'blog/getPostListFailed',
+            payload: error
+          })
+        }
+      })
+    
+    return () => {
+      controller.abort()
+    }
+  },[dispatch])
 
   const handleDelete  = (postId: string) => {
     dispatch(deletePost(postId))
   }
   const handleUpdate = (postId: string) => {
     dispatch(startEditPost(postId))
-  }
+  }  
 
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12">

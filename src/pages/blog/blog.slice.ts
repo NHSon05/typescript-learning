@@ -8,7 +8,7 @@ interface BlogState{
 }
 
 const initialState: BlogState =  {
-  postList: initialPostList,
+  postList: [],
   editPost: null
 }
 
@@ -32,7 +32,6 @@ const blogSlice = createSlice({
   initialState,
   reducers: {
     
-
     deletePost: (state, action: PayloadAction<string>) => {
       const postId = action.payload
       const foundPostIndex = state.postList.findIndex(post  => post.id === postId)
@@ -74,7 +73,9 @@ const blogSlice = createSlice({
   },
   extraReducers: (builder) => {
     // sử dụng addMatcher
-    builder
+    builder.addCase('blog/getPostListSuccess', (state, action:any) => {
+      state.postList = action.payload
+    })
     .addMatcher(
       // 1: Matcher (hàm đối sánh): trả về TRUE nếu action type kết thúc bằng './reject'
       (action) => action.type.includes('cancel'),
@@ -85,7 +86,8 @@ const blogSlice = createSlice({
     )
     .addDefaultCase((state, action) => {
       console.log(`action type: ${action.type}`, current(state))
-    }) 
+    })
+
   }
 })
 
