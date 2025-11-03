@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import PostItem from "../postItem";
-import type { RootState } from "../../../../store";
-import { deletePost, startEditPost } from "../../blog.slice";
+import { useAppDispatch, type RootState } from "../../../../store";
+import { deletePost, getPostList, startEditPost } from "../../blog.slice";
 import { useEffect } from "react";
-import http from "../../../../utils/http";
+// import http from "../../../../utils/http";
 
 
 // Call API in useEffect()
@@ -15,32 +15,13 @@ import http from "../../../../utils/http";
 export default function PostList() {
 
   const postList = useSelector((state: RootState) => state.blog.postList)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   
   useEffect(()=> {
-    const controller = new AbortController();
-    http
-      .get('posts',{
-        signal: controller.signal
-      }).then((res) => {
-        console.log(res)
-        const postsListResult = res.data
-        dispatch({
-          type: 'blog/getPostListSuccess',
-          payload: postsListResult
-        })
-      }).catch(error => {
-        if (!(error.code === "ERR_CANCELED")){
-          dispatch({
-            type: 'blog/getPostListFailed',
-            payload: error
-          })
-        }
-      })
-    
+    const promise =  dispatch(getPostList())
     return () => {
-      controller.abort()
-    }
+      promise.abort()
+    } 
   },[dispatch])
 
   const handleDelete  = (postId: string) => {

@@ -1,6 +1,7 @@
-import { createSlice, current, nanoid, type PayloadAction} from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, current, type PayloadAction} from '@reduxjs/toolkit'
 import type { Post } from '../../types/blog.type'
-import { initialPostList } from '../../constants/blog'
+// import { initialPostList } from '../../constants/blog'
+import http from '../../utils/http'
 
 interface BlogState{
   postList: Post[],
@@ -11,6 +12,25 @@ const initialState: BlogState =  {
   postList: [],
   editPost: null
 }
+
+export const getPostList = createAsyncThunk(
+  'blog/getPostList',
+  async (_, thunkAPI ) => {
+    const response = await http.get<Post[]>('posts',{
+      signal: thunkAPI.signal
+    })
+    return response.data
+})
+
+export const addPost = createAsyncThunk(
+  'blog/addPost',
+  async (body: Omit<Post, 'id'>, thunkAPI ) => {
+    const response = await http.post<Post>('posts', body, {
+      signal: thunkAPI.signal
+    })
+    return response.data
+})
+
 
 // export const addPost = createAction('blog/addPost', function (post: Omit<Post, 'id'>){
 //   return {
@@ -57,41 +77,31 @@ const blogSlice = createSlice({
         return false;
       })
       state.editPost = null
-    },
-    addPost: {
-      reducer: (state, action: PayloadAction<Post>) => {
-        const post = action.payload
-        state.postList.push(post)
-      },
-      prepare: (post: Omit<Post, 'id'>) => ({
-        payload: {
-          ...post,
-          id:nanoid()
-        }
-      })
     }
   },
   extraReducers: (builder) => {
     // sử dụng addMatcher
-    builder.addCase('blog/getPostListSuccess', (state, action:any) => {
-      state.postList = action.payload
-    })
-    .addMatcher(
-      // 1: Matcher (hàm đối sánh): trả về TRUE nếu action type kết thúc bằng './reject'
-      (action) => action.type.includes('cancel'),
-      // Reducer: hàm xử lý trạng thái khi matcher là TRUE
-      (state) => {
-        console.error(current(state));
-      }
-    )
-    .addDefaultCase((state, action) => {
-      console.log(`action type: ${action.type}`, current(state))
-    })
-
+    builder
+      .addCase(getPostList.fulfilled, (state, action) => {
+        state.postList = action.payload
+      })
+      .addCase(addPost.fulfilled, (state, action) => {
+        state.postList.push(action.payload)
+      })
+      .addMatcher(
+        // 1: Matcher (hàm đối sánh): trả về TRUE nếu action type kết thúc bằng './reject'
+        (action) => action.type.includes('cancel'),
+        // Reducer: hàm xử lý trạng thái khi matcher là TRUE
+        (state) => {
+          console.error(current(state));
+      })
+      .addDefaultCase((state, action) => {
+          console.log(`action type: ${action.type}`, current(state))
+      })
   }
 })
 
-export const {addPost, startEditPost, cancelEditPost, finishEditPost, deletePost} = blogSlice.actions;
+export const {startEditPost, cancelEditPost, finishEditPost, deletePost} = blogSlice.actions;
 const blogReducer = blogSlice.reducer;
 export default blogReducer
 

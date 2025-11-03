@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import type { Post } from "../../../../types/blog.type"
-import { useDispatch, useSelector } from "react-redux"
+import {  useSelector } from "react-redux"
 import { addPost, cancelEditPost, finishEditPost } from "../../blog.slice"
-import type { RootState } from "../../../../store"
+import { useAppDispatch, type RootState } from "../../../../store"
 
 const initialState: Post = {
   id: '',
@@ -17,7 +17,7 @@ export default function CreatePost() {
 
   const [formData, setFormData] = useState<Post>(initialState)
   const editPost = useSelector((state: RootState) => state.blog.editPost)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   useEffect(() =>{
     setFormData(editPost || initialState)
@@ -28,8 +28,7 @@ export default function CreatePost() {
     if (editPost) {
       dispatch(finishEditPost(formData))
     } else {
-        const formDataWithId = { ...formData, id: new Date().toISOString()}
-        dispatch(addPost(formDataWithId));
+        dispatch(addPost(formData));
     }
     setFormData(initialState);
   }

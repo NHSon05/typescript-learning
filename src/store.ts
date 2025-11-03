@@ -2,6 +2,7 @@
 import {configureStore} from '@reduxjs/toolkit'
 // import một reducer cụ thể. Hàm quản lý trạng thái và logic cho trạng thái
 import blogReducer from './pages/blog/blog.slice'
+import { useDispatch } from 'react-redux'
 
 // Khởi tạo redux store
 // 
@@ -23,3 +24,4 @@ export type AppDispatch = typeof store.dispatch
 // store.dispatch: Hàm này là phương thức gửi các hành động đến Store
 // typeof store.dispatch: Lấy kiểu hàm của dispatch
 // Dòng này tự động tạo ra kiểu dữ liệu cho hàm dispatch.
+export const useAppDispatch = () => useDispatch<AppDispatch>()
