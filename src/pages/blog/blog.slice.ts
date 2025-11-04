@@ -32,9 +32,9 @@ export const addPost = createAsyncThunk(
 })
 
 export const updatePost = createAsyncThunk(
-  'blog/updatePost',
-  async (body: Post, thunkAPI) => {
-    const response = await http.put<Post>('posts', body, {
+  'blog/updatePost', 
+  async ({ postId , body } : {postId: string; body: Post }, thunkAPI) => {
+    const response = await http.put<Post>(`posts/${postId}`, body, {
       signal: thunkAPI.signal
     })
     return response.data
