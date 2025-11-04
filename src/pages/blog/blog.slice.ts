@@ -31,6 +31,15 @@ export const addPost = createAsyncThunk(
     return response.data
 })
 
+export const updatePost = createAsyncThunk(
+  'blog/updatePost',
+  async (body: Post, thunkAPI) => {
+    const response = await http.put<Post>('posts', body, {
+      signal: thunkAPI.signal
+    })
+    return response.data
+  }
+)
 
 // export const addPost = createAction('blog/addPost', function (post: Omit<Post, 'id'>){
 //   return {
@@ -87,6 +96,16 @@ const blogSlice = createSlice({
       })
       .addCase(addPost.fulfilled, (state, action) => {
         state.postList.push(action.payload)
+      })
+      .addCase(updatePost.fulfilled, (state,action) => {
+        state.postList.find((post, index) => {
+          if (post.id === action.payload.id) {
+            state.postList[index] =  action.payload
+            return true
+          } 
+          return false
+        })
+        state.editPost = null
       })
       .addMatcher(
         // 1: Matcher (hàm đối sánh): trả về TRUE nếu action type kết thúc bằng './reject'

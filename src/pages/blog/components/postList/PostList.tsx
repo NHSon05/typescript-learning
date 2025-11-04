@@ -36,7 +36,7 @@ export default function PostList() {
       <div className="mx-auto px-4 md:px-8">
         <div className="mb-10 md:mb-16">
           <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
-            Được Dev Blog
+            List
           </h2>
           <p className="mx-auto max-w-md text-center text-gray-500 md:text-lg">
             Đừng bao giờ từ bỏ. Hôm nay khó khăn, ngày mai sẽ trở nên tồi

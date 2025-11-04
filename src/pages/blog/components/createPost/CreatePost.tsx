@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import type { Post } from "../../../../types/blog.type"
 import {  useSelector } from "react-redux"
-import { addPost, cancelEditPost, finishEditPost } from "../../blog.slice"
+import { addPost, cancelEditPost, updatePost } from "../../blog.slice"
 import { useAppDispatch, type RootState } from "../../../../store"
 
 const initialState: Post = {
@@ -26,7 +26,10 @@ export default function CreatePost() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (editPost) {
-      dispatch(finishEditPost(formData))
+      dispatch(updatePost({
+        postId: editPost.id,
+        body: formData
+      }))
     } else {
         dispatch(addPost(formData));
     }
