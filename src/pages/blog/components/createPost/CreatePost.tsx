@@ -33,7 +33,7 @@ export default function CreatePost() {
         }
       ))
     } else {
-        dispatch(addPost(formData));
+      dispatch(addPost(formData))
     }
     setFormData(initialState);
   }

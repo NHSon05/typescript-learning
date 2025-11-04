@@ -41,6 +41,16 @@ export const updatePost = createAsyncThunk(
   }
 )
 
+export const deletePost = createAsyncThunk(
+  'blog/deletePost',
+  async (postId : string, thunkAPI) => {
+    const response = await http.delete<Post>(`posts/${postId}`, {
+      signal: thunkAPI.signal
+    })
+    return response.data
+  }
+)
+
 // export const addPost = createAction('blog/addPost', function (post: Omit<Post, 'id'>){
 //   return {
 //     payload: {
@@ -60,14 +70,6 @@ const blogSlice = createSlice({
   name:'blog',
   initialState,
   reducers: {
-    
-    deletePost: (state, action: PayloadAction<string>) => {
-      const postId = action.payload
-      const foundPostIndex = state.postList.findIndex(post  => post.id === postId)
-      if (foundPostIndex !== -1) {
-        state.postList.splice(foundPostIndex, 1)
-      } 
-    },
     startEditPost: (state, action:PayloadAction<string>) => {
       const postId = action.payload
       const foundPost = state.postList.find((post) => post.id === postId) || null
@@ -76,17 +78,6 @@ const blogSlice = createSlice({
     cancelEditPost: (state) => {
       state.editPost = null
     },
-    finishEditPost: (state, action: PayloadAction<Post>) => {
-      const postId = action.payload.id
-      state.postList.some((post,index)=> {
-        if (post.id === postId){
-          state.postList[index] = action.payload
-          return true;
-        }
-        return false;
-      })
-      state.editPost = null
-    }
   },
   extraReducers: (builder) => {
     // sử dụng addMatcher
@@ -107,6 +98,13 @@ const blogSlice = createSlice({
         })
         state.editPost = null
       })
+      .addCase(deletePost.fulfilled, (state, action)=> {
+        const postId = action.meta.arg
+        const deletePostIndex = state.postList.findIndex(post => post.id === postId)
+        if (deletePostIndex !== -1){
+          state.postList.splice(deletePostIndex, 1)
+        }
+      })
       .addMatcher(
         // 1: Matcher (hàm đối sánh): trả về TRUE nếu action type kết thúc bằng './reject'
         (action) => action.type.includes('cancel'),
@@ -120,7 +118,7 @@ const blogSlice = createSlice({
   }
 })
 
-export const {startEditPost, cancelEditPost, finishEditPost, deletePost} = blogSlice.actions;
+export const {startEditPost, cancelEditPost} = blogSlice.actions;
 const blogReducer = blogSlice.reducer;
 export default blogReducer
 
