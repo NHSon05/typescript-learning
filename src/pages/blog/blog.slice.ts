@@ -1,16 +1,25 @@
-import { createAsyncThunk, createSlice, current, type PayloadAction} from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, current, type PayloadAction,type AsyncThunk} from '@reduxjs/toolkit'
 import type { Post } from '../../types/blog.type'
-// import { initialPostList } from '../../constants/blog'
 import http from '../../utils/http'
+
+type GenericAsyncThunk = AsyncThunk<unknown, unknown, any>
+
+type PendingAction = ReturnType<GenericAsyncThunk['pending']>
+type RejectedAction = ReturnType<GenericAsyncThunk['rejected']>
+type FulfilledAction = ReturnType<GenericAsyncThunk['fulfilled']>
 
 interface BlogState{
   postList: Post[],
   editPost: Post | null
+  loading: boolean
+  currentRequestId: undefined | string
 }
 
 const initialState: BlogState =  {
   postList: [],
-  editPost: null
+  editPost: null,
+  loading: false,
+  currentRequestId: undefined
 }
 
 export const getPostList = createAsyncThunk(
@@ -34,10 +43,15 @@ export const addPost = createAsyncThunk(
 export const updatePost = createAsyncThunk(
   'blog/updatePost', 
   async ({ postId , body } : {postId: string; body: Post }, thunkAPI) => {
-    const response = await http.put<Post>(`posts/${postId}`, body, {
-      signal: thunkAPI.signal
-    })
-    return response.data
+    try{
+      const response = await http.put<Post>(`posts/${postId}`, body, {
+        signal: thunkAPI.signal
+      })
+      return response.data
+    } catch (error){
+      console.log(error)
+      throw error
+    }
   }
 )
 
@@ -105,12 +119,19 @@ const blogSlice = createSlice({
           state.postList.splice(deletePostIndex, 1)
         }
       })
-      .addMatcher(
-        // 1: Matcher (hàm đối sánh): trả về TRUE nếu action type kết thúc bằng './reject'
-        (action) => action.type.includes('cancel'),
-        // Reducer: hàm xử lý trạng thái khi matcher là TRUE
-        (state) => {
-          console.error(current(state));
+      .addMatcher<PendingAction>(
+        (action) => action.type.endsWith('/pending'),
+        (state, action) => {
+          state.loading = true
+          state.currentRequestId = action.meta.requestId
+      })
+      .addMatcher<RejectedAction | FulfilledAction>(
+        (action) => action.type.endsWith('/rejected') || action.type.endsWith('/fulfilled'),
+        (state, action) => {
+          if (state.loading && state.currentRequestId === action.meta.requestId){
+            state.loading = false;
+            state.currentRequestId = undefined
+          }
       })
       .addDefaultCase((state, action) => {
           console.log(`action type: ${action.type}`, current(state))

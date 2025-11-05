@@ -34,7 +34,6 @@ export default function CreatePost() {
       ))
     } else {
       const { id, ...bodyWithoutId } = formData;
-      console.log(id)
       dispatch(addPost(bodyWithoutId))
     }
     setFormData(initialState);
