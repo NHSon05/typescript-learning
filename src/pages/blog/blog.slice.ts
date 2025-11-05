@@ -24,7 +24,7 @@ export const getPostList = createAsyncThunk(
 
 export const addPost = createAsyncThunk(
   'blog/addPost',
-  async (body: Omit<Post, 'id'>, thunkAPI ) => {
+  async (body: Omit<Post, `id`>, thunkAPI ) => {
     const response = await http.post<Post>('posts', body, {
       signal: thunkAPI.signal
     })

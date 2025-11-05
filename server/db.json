@@ -1,103 +1,12 @@
 {
   "posts": [
     {
-      "id": "1dbc"
-    },
-    {
-      "id": "",
-      "title": "helasdhjkasdhj",
-      "description": "đasadasd",
-      "featuredImage": "đâsdsa",
-      "publishDate": "2025-10-30T00:51",
+      "id": "383e",
+      "title": "Sống ở đời, có làm thì mới có ăn",
+      "description": "Không làm mà đòi có ăn thì có ăn đb",
+      "featuredImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5FwjBP-ar6eXN8-CyXAdPQFSCXMMorVsrOQ&s",
+      "publishDate": "2025-11-09T16:37",
       "published": true
-    },
-    {
-      "id": "",
-      "title": "đâsd",
-      "description": "ádasdads",
-      "featuredImage": "sadasdasd",
-      "publishDate": "2025-11-05T00:51",
-      "published": true
-    },
-    {
-      "id": "",
-      "title": "heheh",
-      "description": "dashljdhaj",
-      "featuredImage": "jasdhasjdh",
-      "publishDate": "2025-11-07T19:01",
-      "published": true
-    },
-    {
-      "id": "",
-      "title": "Mọi công việc thành đạt đều nhờ sự kiên trì và lòng say asdasdasdasmê.",
-      "description": "dasdasd",
-      "featuredImage": "https://images.unsplash.com/photo-1665412019489-1928d5afa5cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80",
-      "publishDate": "2025-11-04T00:10",
-      "published": true
-    },
-    {
-      "id": "",
-      "title": "Mọi công việc thành đạt đều nhờ sự kiên trì và lòng say asdasdasdasmê.",
-      "description": "Nghịch cảnh là một phần của cuộc sống. Nó không thể bị kiểm soát. Cái có thể kiểm soát chính là cách chúng ta phản ứng trước nghịch cảnh.\n\n",
-      "featuredImage": "https://images.unsplash.com/photo-1665412019489-1928d5afa5cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80",
-      "publishDate": "2025-11-05T00:15",
-      "published": true
-    },
-    {
-      "id": "",
-      "title": "dasdsadasd",
-      "description": "dasdsadsa",
-      "featuredImage": "https://images.unsplash.com/photo-1665412019489-1928d5afa5cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80",
-      "publishDate": "2025-11-03T00:27",
-      "published": true
-    },
-    {
-      "id": "",
-      "title": "Mọi công việc thành đạt đều nhờ sự kiên trì và lòng say asdasdasdasmê.",
-      "description": "dasdsa",
-      "featuredImage": "https://images.unsplash.com/photo-1665412019489-1928d5afa5cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80dasdsa",
-      "publishDate": "2025-10-29T00:30",
-      "published": false
-    },
-    {
-      "id": "",
-      "title": "dasdsadas",
-      "description": "casdasdasd",
-      "featuredImage": "https://images.unsplash.com/photo-1665412019489-1928d5afa5cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80",
-      "publishDate": "2025-11-03T00:48",
-      "published": true
-    },
-    {
-      "id": "",
-      "title": "dsajhdsajkdhsajk",
-      "description": "đasad",
-      "featuredImage": "https://images.unsplash.com/photo-1665412019489-1928d5afa5cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80",
-      "publishDate": "2025-11-12T00:53",
-      "published": true
-    },
-    {
-      "id": "",
-      "title": "bngjhfgjhfgh",
-      "description": "bjvhjgjh",
-      "featuredImage": "https://images.unsplash.com/photo-1665412019489-1928d5afa5cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80",
-      "publishDate": "2025-10-30T00:53",
-      "published": false
-    },
-    {
-      "id": "",
-      "title": "cacsad",
-      "description": "sdsadasd",
-      "featuredImage": "https://images.unsplash.com/photo-1665412019489-1928d5afa5cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80",
-      "publishDate": "2025-11-17T00:54",
-      "published": true
-    },
-    {
-      "id": "2142",
-      "description": "Ngu thi die, dáljkdsajkldjsakldjsakljk thi sống.\n",
-      "featuredImage": "https://images.unsplash.com/photo-1665412019489-1928d5afa5cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80",
-      "publishDate": "2022-10-13T11:32",
-      "published": true,
-      "title": "Mọi công việc thành đạt đều nhờ sự kiên trì và lòng say mê."
     }
   ]
 }
